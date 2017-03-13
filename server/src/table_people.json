@@ -1,0 +1,48 @@
+{
+    "name": "test_faire",
+    "tables": [{
+        "name": "people",
+        "columns": [{
+            "name": "sca_name",
+            "type": "string",
+            "index": "u"
+        },{
+            "name": "title",
+            "type": "string"
+        },{
+            "name": "modern_name",
+            "type": "string"
+        },{
+            "name": "address",
+            "type": "string"
+        },{
+            "name": "city",
+            "type": "string",
+        },{
+            "name": "state",
+            "type": "string"
+        },{
+            "name": "zip_code",
+            "type": "string"
+        },{
+            "name": "phone",
+            "type": "string"
+        },{
+            "name": "email",
+            "type": "string"
+        },{
+            "name": "password",
+            "type": "string"
+        },{
+            "name": "changed",
+            "type": "date"
+        },{
+            "name": "deleted",
+            "type": "int"
+        },{
+            "name": "admin",
+            "type": "string",
+            "index": "y"
+        }]
+    }]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "test_build",
+    "tables": [{
+        "name": "second",
+        "columns": [{
+            "name": "new",
+            "type": "int"
+        }]
+    },{
+        "name": "last",
+        "columns": [{
+            "name": "first_id",
+            "type": "link",
+            "index": "y"
+        },{
+            "name": "second_id",
+            "type": "link",
+            "index": "y"
+        }]
+    }]
+}

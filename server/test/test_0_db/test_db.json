@@ -1,0 +1,33 @@
+{
+    "name": "test_build",
+    "tables": [{
+        "name": "first",
+        "columns": [{
+            "name": "name",
+            "type": "string",
+            "index": "u"
+        },{
+            "name": "age",
+            "type": "int"
+        }]
+    },{
+        "name": "second",
+        "columns": [{
+            "name": "first_id",
+            "type": "link"
+        },{
+            "name": "saved",
+            "type": "date"
+        }]
+    },{
+        "name": "third",
+        "columns": [{
+            "name": "second_id",
+            "type": "link",
+            "index": "y"
+        },{
+            "name": "other",
+            "type": "string"
+        }]
+    }]
+}

@@ -1,0 +1,37 @@
+[
+    {
+        "id": "test-P-1",
+        "sca_name": "Buford",
+        "mundane_name": "Ben",
+        "phone": "1234567890",
+    },{
+        "id": "test-P-2",
+        "sca_name": "Darlene",
+        "mundane_name": "Dede",
+        "password": "other",
+        "admin": "Regional"
+    },{
+        "id": "test-P-3",
+        "sca_name": "Alfred",
+        "mundane_name": "Al",
+        "address": "123 Nowhere Lane",
+        "city": "Nonesuch",
+        "state": "IN",
+        "zip_code": "98765",
+        "phone": "1234567890",
+        "email": "al@none.com",
+        "password": "12345"
+    },{
+        "id": "test-P-4",
+        "sca_name": "Edmund",
+        "mundane_name": "Eddie",
+        "passwoed": "none",
+        "admin": "Faire"
+    },{
+        "id": "test-P-5",
+        "sca_name": "Catherine",
+        "mundane_name": "Kathy",
+        "phone": "1234567890",
+        "admin": "Kingdom"
+    }
+]
