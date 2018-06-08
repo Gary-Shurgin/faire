@@ -1,24 +1,47 @@
 {
-  "name": "client",
+  "name": "webpack-4-quickstart",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.jsx",
+  "description": "> Webpack 4 tutorial: All You Need to Know, from 0 Conf to Production Mode",
+  "main": "index.js",
   "scripts": {
-      "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
-      "test:watch": "npm run test -- --watch"
- },
-  "babel": {
-    "presets": ["es2015", "react"]
- },
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valentinogagliardi/webpack-4-quickstart.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valentinogagliardi/webpack-4-quickstart/issues"
+  },
+  "homepage": "https://github.com/valentinogagliardi/webpack-4-quickstart#readme",
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.4.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.0.7",
+    "mini-css-extract-plugin": "^0.2.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "devServer": {
+    "contentBase": "./src",
+    "watchContentBase": true
+  },
+  "dependencies": {
+    "npm": "^6.0.1",
+    "react-icons": "^2.2.7"
   }
 }
