@@ -1,22 +1,13 @@
 import React from 'react'
-import { action } from '../person/PersonData'
+import { connect } from 'react-redux';
+import { check, mapStateToProps } from './LoginData'
+import LoginSelect from './LoginSelect'
+import Person from '../person/Person'
 
-const Login = ({login}) => (
-    <div>
-        <div className='ans-title ans-first' >Login Page</div>
-        <div className='ans-box'>
-            <br/>
-            <div className='ans-title ans-clickable'>Select your SCA name from a list</div>
-            <br/>
-            <hr/>
-            <br/>
-            <div className='ans-title ans-clickable'
-                onClick={() => action.createPerson()}>
-                Create a new entry for the Faire
-            </div>
-            <br/>
-        </div>
-    </div>
-)
+const Login = ({page}) => {
+    console.log('login', page, check.isAdd(page))
+    if ( check.isAdd(page) ) return <Person />
+    return <LoginSelect />
+}
 
-export default Login
+export default connect(mapStateToProps)(Login)

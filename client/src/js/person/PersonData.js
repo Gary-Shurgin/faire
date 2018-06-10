@@ -1,10 +1,10 @@
 import store from '../store/index'
-import { action as menu } from '../header/MenuType'
+import { action as menu } from '../login/LoginData'
 import { fields } from './PersonLayout'
 import { initItems } from '../forms/Layout'
 
 const CREATE_PERSON = 'createPerson'
-const ADD_PERSON = 'addPerson'
+export const ADD_PERSON = 'addPerson'
 
 const people = []
 
