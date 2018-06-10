@@ -1,5 +1,5 @@
 import store from '../store/index'
-import { action as menu } from '../login/LoginData'
+import { action as menu } from '../login/LoginAction'
 import { fields } from './PersonLayout'
 import { initItems } from '../forms/Layout'
 

@@ -1,5 +1,5 @@
 import store from '../store/index'
-import { ADD_PERSON } from '../person/PersonData'
+import { ADD_PERSON } from '../person/PersonAction'
 const HOME_MENU = 'homeItem'
 const RULES_MENU = 'rulesItem'
 const CRITERIA_MENU = 'criteriaItem'
@@ -10,12 +10,10 @@ const init = {
     person: null,
 }
 
-export const mapStateToProps = state => (
-    { 
-        menu: state.menu.menu,
-        person: state.menu.person,
-    }
-)
+export const mapStateToProps = state => ({ 
+    menu: state.menu.menu,
+    person: state.menu.person,
+})
 
 const _isMenu = (state, item) => state === item
 
@@ -49,7 +47,7 @@ export const menuReducer = (state = init, {type, payload}) => {
     case SET_MENU:
         return { ...state, ...payload }
     case ADD_PERSON:
-        return { ...state, person: {...payload} }
+        return { ...state, person: payload }
     }
     return state
 }

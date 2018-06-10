@@ -4,6 +4,12 @@ const SET_NOTE = 'setNote'
 
 const noteData = [
     {
+        date: "2018-06-100",
+        text: [
+            'Complete adding a Person (not to database).',
+        ]
+    },
+    {
         date: "2018-05-20",
         text: [
             'Add Notes and Next section on the Home page.',

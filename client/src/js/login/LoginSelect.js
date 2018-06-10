@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { action, mapStateToProps } from './LoginData'
+import { action, mapStateToProps } from './LoginAction'
 
 const Login = ({page}) => (
     <div>

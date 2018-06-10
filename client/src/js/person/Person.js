@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import uuidv1 from 'uuid'
 import { isEqual } from 'lodash'
 import { fields } from './PersonLayout'
-import { mapStateToProps, action } from './PersonData'
+import { mapStateToProps, action } from './PersonAction'
 import { renderItem } from '../forms/Layout'
 
 class Person extends Component {

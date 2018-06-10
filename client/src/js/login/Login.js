@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { check, mapStateToProps } from './LoginData'
+import { check, mapStateToProps } from './LoginAction'
 import LoginSelect from './LoginSelect'
 import Person from '../person/Person'
 

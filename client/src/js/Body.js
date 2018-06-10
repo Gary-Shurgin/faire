@@ -4,7 +4,7 @@ import Home from './home/Home'
 import Rules from './rules/Rules'
 import Criteria from './criteria/Criteria'
 import Login from './login/Login'
-import { check, mapStateToProps } from './header/MenuType'
+import { check, mapStateToProps } from './header/MenuAction'
 
 const bodyType = (menu) => {
     if ( check.isRules(menu) ) return <Rules />

@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { action, check, mapStateToProps } from './MenuType'
+import { action, check, mapStateToProps } from './MenuAction'
 
 const checkDisable = (check) => {
-    return ['ans-menu-button', check ? 'ans-disabled' : ''].join(' ')
+    return [
+        'ans-menu-button', 
+        check ? 'ans-disabled' : ''
+    ].join(' ')
 }
 
 const MenuBar = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { check, action, mapStateToProps } from './NotesData'
+import { check, action, mapStateToProps } from './NotesAction'
 import JumpBar from '../util/JumpBar'
 
 const Notes = ({index, max, date, text}) => {
