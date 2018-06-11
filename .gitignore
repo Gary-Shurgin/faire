@@ -5,3 +5,4 @@ server/node_modules
 server/dist
 server/out
 *.log
+node_modules
