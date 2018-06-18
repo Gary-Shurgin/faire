@@ -6,3 +6,4 @@ server/dist
 server/out
 *.log
 node_modules
+dist
