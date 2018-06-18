@@ -27,8 +27,11 @@ class Person extends Component {
         this.setState({ [id] : value })
     }
 
-    iSNotSubmit() {
-        const req = fields.filter(({id, required}) => {
+    iSNotSubmit(fields) {
+        const req = fields.filter(({type, id, required, items}) => {
+            if ( type == 'group' ) {
+                return this.isNotSubmit(items)
+            }
             return required && this.state[id] === ''   
         })
         const equals = isEqual(this.state, this.props.person)
@@ -36,6 +39,7 @@ class Person extends Component {
     }
 
     handleSubmit(event) {
+        console.log('submit', event)
         event.preventDefault();
         action.addPerson({ ...this.state, id:uuidv1() });
     }
@@ -48,8 +52,11 @@ class Person extends Component {
                     {fields.map((field) => (
                         renderItem(field, this.state, this.handleChange)
                     ))}
-                    <button disabled={this.iSNotSubmit()} 
-                            type='submit'>Save</button> 
+                    {this.props.editing ? 
+                        <button id='save' disabled={this.iSNotSubmit(fields)} 
+                                type='submit'>Save</button> : 
+                        <button id='edit' type='submit'>Edit</button>
+                    } 
                 </form>
             </div>
         </div>

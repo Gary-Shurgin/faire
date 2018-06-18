@@ -7,16 +7,16 @@ const regions = [
 ]
 
 const companions = [
-    { id: 'chivilary',    view: 'Chivilary', },
-    { id: 'laurel',       view: 'Laruel', },
-    { id: 'pelican',      view: 'Pelican', },
-    { id: 'defender',     view: 'Defender', },
+    { type: 'toggle', id: 'chivilary',    view: 'Chivilary', },
+    { type: 'toggle', id: 'laurel',       view: 'Laruel', },
+    { type: 'toggle', id: 'pelican',      view: 'Pelican', },
+    { type: 'toggle', id: 'defender',     view: 'Defender', },
 ]
 
 const ranks = [
-    { id: 'captain',      view: 'Captain', },
-    { id: 'warder',       view: 'Warder', },
-    { id: 'forrester',    view: 'Forrester', },
+    { type: 'toggle', id: 'captain',      view: 'Captain', },
+    { type: 'toggle', id: 'warder',       view: 'Warder', },
+    { type: 'toggle', id: 'forrester',    view: 'Forrester', },
 ]
 
 export const fields = [

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ENAMETOOLONG } from 'constants';
 
 class Select extends React.Component {
     constructor(props) {
@@ -8,8 +7,8 @@ class Select extends React.Component {
 
         this.isActive.bind(this.isActive)
         this.isChecked.bind(this.isChecked)
-        this.clearClick.bind(this.cleanClick
-        )
+        this.clearClick.bind(this.cleanClick)
+        this.required.bind(this.required)
     }
 
     clearClick(event) {
@@ -24,11 +23,15 @@ class Select extends React.Component {
         return this.isActive(name === value)
     }
 
+    required(value) {
+        return value ? <span style={({color:'red'})}>* </span> : ''
+    }
+
     render() {
-        const { text, name, value, items, onClick } = this.props;
+        const { text, name, value, items, onClick, required } = this.props;
         return (
             <div>
-                <label htmlFor={name}>{text}: </label>
+                <label htmlFor={name}>{this.required(required)}{text}: </label>
                 <span>
                 {items.map(({id, view}) => (
                     <span key={id} id={id} 
@@ -48,6 +51,7 @@ Select.propTypes = {
     text: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
+    required: PropTypes.bool,
     items: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
 }

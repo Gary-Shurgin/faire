@@ -3,12 +3,13 @@ import Field from './Field'
 import Select from './Select'
 import GroupCheckbox from './GroupCheckbox'
 
-const select = ({ id, label, items }, state, change) => (
+const select = ({ id, label, required, items }, state, change) => (
     <Select key={id} text={label} 
             name={id}
             value={state[id]} 
             items={items} 
-            onClick={change}/> 
+            onClick={change}
+            required={required}/> 
 )
 
 const group = ({ id, label, items }, state, change) => (

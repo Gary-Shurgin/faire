@@ -19,12 +19,12 @@ class GroupCheckbox extends React.Component {
     }
 
     render() {
-        const { text, name, values, items, onClick } = this.props;
+        const { text, values, items, onClick } = this.props;
         return (
             <div>
                 <label>{text}: </label>
                 <span>
-                {items.map(({id, view, value}) => (
+                {items.map(({id, view}) => (
                     <span key={id} id={id} 
                             className={this.isActive(values[id])} 
                             onMouseDown={this.clearClick}
