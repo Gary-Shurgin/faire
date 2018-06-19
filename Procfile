@@ -1,1 +1,1 @@
-worker: node start
+web: node start
