@@ -1,1 +1,1 @@
-worker: node client/src/js/Main.js
+web: node server.js
