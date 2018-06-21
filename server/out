@@ -1,0 +1,24 @@
+
+> server@1.0.0 test C:\Users\Vorlin\Apps\new\faire\server
+> mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive
+
+
+
+  people list
+in ordered
+build connection: domain,_events,_eventsCount,_maxListeners,config,_socket,_protocol,_connectCalled,state,threadId
+build connection: {"host":"localhost","port":"9999","user":"root","database":"test_kingdom","connectTimeout":10000,"insecureAuth":false,"supportBigNumbers":false,"bigNumberStrings":false,"dateStrings":false,"debug":true,"trace":true,"stringifyObjects":false,"timezone":"local","flags":"","ssl":false,"multipleStatements":false,"typeCast":true,"maxPacketSize":0,"charsetNumber":33,"clientFlags":455631}
+build connection: disconnected
+list = undefined
+    1) get a list
+
+
+  0 passing (125ms)
+  1 failing
+
+  1) people list get a list:
+     TypeError: Cannot read property 'length' of undefined
+      at Context.<anonymous> (C:/Users/Vorlin/Apps/new/faire/server/test/test_people.js:9:16)
+
+
+
