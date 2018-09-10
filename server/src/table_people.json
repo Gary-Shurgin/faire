@@ -17,7 +17,7 @@
             "type": "string"
         },{
             "name": "city",
-            "type": "string",
+            "type": "string"
         },{
             "name": "state",
             "type": "string"

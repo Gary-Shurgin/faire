@@ -1,33 +1,33 @@
 const regions = [
-    { id: 'constelation', view: 'Constelation', },
-    { id: 'midlands',     view: 'Midlands', },
-    { id: 'pentamere',    view: 'Pentamere', },
-    { id: 'nOaken',       view: 'North Oaken', },
-    { id: 'sOaken',       view: 'South Oaken', },
+    { name: 'constelation', label: 'Constelation', },
+    { name: 'midlands',     label: 'Midlands', },
+    { name: 'pentamere',    label: 'Pentamere', },
+    { name: 'nOaken',       label: 'North Oaken', },
+    { name: 'sOaken',       label: 'South Oaken', },
 ]
 
 const companions = [
-    { type: 'toggle', id: 'chivilary',    view: 'Chivilary', },
-    { type: 'toggle', id: 'laurel',       view: 'Laruel', },
-    { type: 'toggle', id: 'pelican',      view: 'Pelican', },
-    { type: 'toggle', id: 'defender',     view: 'Defender', },
+    { type: 'toggle', name: 'chivilary',    label: 'Chivilary', },
+    { type: 'toggle', name: 'laurel',       label: 'Laruel', },
+    { type: 'toggle', name: 'pelican',      label: 'Pelican', },
+    { type: 'toggle', name: 'defender',     label: 'Defender', },
 ]
 
 const ranks = [
-    { type: 'toggle', id: 'captain',      view: 'Captain', },
-    { type: 'toggle', id: 'warder',       view: 'Warder', },
-    { type: 'toggle', id: 'forrester',    view: 'Forrester', },
+    { type: 'toggle', name: 'captain',      label: 'Captain', },
+    { type: 'toggle', name: 'warder',       label: 'Warder', },
+    { type: 'toggle', name: 'forrester',    label: 'Forrester', },
 ]
 
 export const fields = [
-    { id: 'scaName',    required: true,  label: 'SCA Name', focus: 'autoFocus' },
-    { id: 'modernName', required: true,  label: 'Modern Name', },
-    { id: 'cellPhone',  required: true,  label: 'Cell Phone', },
-    { id: 'eMail',      required: true,  label: 'E-mail', },
-    { id: 'password',   required: true,  label: 'Password', },
-    { id: 'notes',      required: false, label: 'Notes', type: 'textbox'},
-    { id: 'region',     required: true,  label: 'Region', type: 'select', items: regions, },
-    { id: 'companions', required: false, label: 'Companion of', type: 'group', items: companions, },
-    { id: 'ranks',      required: false, label: 'Rank', type: 'group', items: ranks, },
+    { name: 'scaName',    required: true,  label: 'SCA Name', focus: 'autoFocus' },
+    { name: 'modernName', required: true,  label: 'Modern Name' },
+    { name: 'cellPhone',  required: true,  label: 'Cell Phone', },
+    { name: 'eMail',      required: true,  label: 'E-mail', },
+    { name: 'password',   required: true,  label: 'Password', },
+    { name: 'region',     required: true,  label: 'Region', type: 'select', items: regions, },
+    { name: 'companions', required: false, label: 'Companion of', type: 'group', items: companions },
+    { name: 'ranks',      required: false, label: 'Rank', type: 'group', items: ranks },
+    { name: 'notes',      required: false, label: 'Notes', type: 'textbox'},
 ]
 

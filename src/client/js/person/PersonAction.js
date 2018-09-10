@@ -13,16 +13,15 @@ const init = {
     current: initItems(fields),
 }
 
-export const mapStateToProps = ({person}) => {
-    return {
-        person: person.current,
-        editing: person.editing,
-    }
-}
+export const mapStateToProps = ({person}) => ({
+    initialValues: person.current,
+    editing: person.editing,    
+})
 
 export const check = {
     hasPerson: (person) => person.id
 }
+
 
 const _addPerson = (person) => {
     store.dispatch({

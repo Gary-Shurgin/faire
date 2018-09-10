@@ -30,14 +30,14 @@ const input = ({ id, label, required, focus }, state, change) => (
 
 export const initItems = (fields) => {
     const obj = {}
-    fields.map(({id, type, init, items}) => {
+    fields.map(({name, type, init, items}) => {
         switch(type) {
         case 'group':
             return items.map(item => {
-                return obj[item.id] = item.init ? item.init : false
+                return obj[item.name] = item.init || false
             })
         default:
-            return obj[id] = init ? init : ''
+            return obj[name] = init || ''
         }
     })
     return obj
