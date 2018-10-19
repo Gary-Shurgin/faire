@@ -124,17 +124,16 @@ export class Form extends React.Component {
 }
 
 export const initItems = (fields, values) => {
-    const obj = {}
-    let test = fields.map(({name, type, init, group, items}) => {
-        switch(type) {
-        case 'group':
-            return items.map(item =>  {
-                return obj[item.name] = contains(values, group, item) || false
-            })
-        default:
-            return obj[name] = (values && values[name]) || init || '' 
-        }
-    })
+    const obj = Object.assign({},
+        ...fields.map(({name, type, init, group, items}) => {
+            switch(type) {
+            case 'group':
+                return items.map(item =>  ({ [item.name] : contains(values, group, item) || false }))
+            default:
+                return { [name] : (values && values[name]) || init || '' }
+            }
+        })
+    )
     return obj
 }
 
