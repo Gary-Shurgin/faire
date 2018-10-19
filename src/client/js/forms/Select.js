@@ -2,30 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Select extends React.Component {
-    constructor(props) {
-        super(props);
+    clearClick = (event) => event.preventDefault()
 
-        this.isActive.bind(this.isActive)
-        this.isChecked.bind(this.isChecked)
-        this.clearClick.bind(this.cleanClick)
-        this.required.bind(this.required)
-    }
+    isActive = (value) => value ? 'ans-active' : ''
 
-    clearClick(event) {
-        event.preventDefault()
-    }
+    isChecked = (name, value) => this.isActive(name === value)
 
-    isActive(value) {
-        return value ? 'ans-active' : ''
-    }
-
-    isChecked(name, value) {
-        return this.isActive(name === value)
-    }
-
-    required(value) {
-        return value ? <span style={({color:'red'})}>* </span> : ''
-    }
+    required = (value) => value ? <span style={({color:'red'})}>* </span> : ''
 
     render() {
         const { text, name, value, items, onClick, required } = this.props;

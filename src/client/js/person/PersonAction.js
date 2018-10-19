@@ -1,29 +1,22 @@
 import store from '../store/index'
 import { action as menu } from '../login/LoginAction'
-import { fields } from './PersonLayout'
-import { initItems } from '../forms/Layout'
 
 const CREATE_PERSON = 'createPerson'
 export const ADD_PERSON = 'addPerson'
 
-// const people = []
-
 const init = {
+    current: { modernName: 'Gary', region: 'nOaken' },
     editing: true,
-    current: initItems(fields),
 }
 
-export const mapStateToProps = ({person}) => ({
-    initialValues: person.current,
-    editing: person.editing,    
-})
+export const mapStateToProps = ({person}) => person
 
 export const check = {
     hasPerson: (person) => person.id
 }
 
-
 const _addPerson = (person) => {
+    console.log('addPerson', person)
     store.dispatch({
         type: ADD_PERSON,
         payload: person,
@@ -33,14 +26,14 @@ const _addPerson = (person) => {
 const _createPerson = () => {
     store.dispatch({
         type: CREATE_PERSON,
-        payload: { ...init }
+        payload: init,
     })
     menu.setPersonForm()
 }
 
 export const action = {
     createPerson: () => _createPerson(),
-    addPerson: (person) => _addPerson(person),
+    add: (person) => _addPerson(person),
 }
 
 export const personReducer = (state = init, action) => {

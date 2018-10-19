@@ -31,11 +31,16 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "apollo-server": "^2.0.8",
     "better-js-class": "*",
     "cps": "*",
-    "graphql": "^14.0.2",
+    "fold-to-ascii": "^4.0.0",
+    "graphql": "^0.13.1",
+    "graphql-date": "^1.0.3",
     "graphql-tools": "^3.1.1",
     "immutable": "^3.8.1",
+    "latinize": "^0.4.0",
+    "lodash": "^4.17.10",
     "mysql": "^2.16.0",
     "mysql2": "^1.1.2",
     "node-mysql": "^0.4.2",

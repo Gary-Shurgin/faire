@@ -28,21 +28,6 @@ const input = ({ id, label, required, focus }, state, change) => (
             required={required} />
 )
 
-export const initItems = (fields) => {
-    const obj = {}
-    fields.map(({name, type, init, items}) => {
-        switch(type) {
-        case 'group':
-            return items.map(item => {
-                return obj[item.name] = item.init || false
-            })
-        default:
-            return obj[name] = init || ''
-        }
-    })
-    return obj
-}
-
 export const renderItem = (field, state, change) => {
     switch (field.type) {
         case 'select':

@@ -6,8 +6,7 @@ class GroupCheckbox extends React.Component {
         super(props);
 
         this.isActive.bind(this.isActive)
-        this.clearClick.bind(this.cleanClick
-        )
+        this.clearClick.bind(this.cleanClick)
     }
 
     clearClick(event) {

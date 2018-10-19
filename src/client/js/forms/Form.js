@@ -2,6 +2,7 @@ import React from 'react'
 import { Field } from 'redux-form'
 import styled, { css } from 'styled-components'
 import Buttons from './Buttons'
+import store from '../store/index'
 
 const Label = styled.label`
     font-weight: bold;
@@ -91,14 +92,74 @@ const FormGrid = styled.div`
     grid-row-gap: 3px;
 `
 
-export const doForm = (fields, props, action) => {
-    console.log('doForm', props)
-    return <form onSubmit={props.handleSubmit}>
-        <FormGrid>
-            {fields.map(field => itemType(field) )}
-            <Buttons editing={props.editing} isNew={!props.initialValues.id} {...action} />
-        </FormGrid>
-    </form>
+const doSubmit = (fields, {initialValues, form}, action) => {
+    store.dispatch({
+        type: 'ADD',
+        payload: {
+            values: Object.assign({}, fields, initialValues),
+            formName: form,
+            action: action
+        }
+    })
+}
+
+export class Form extends React.Component {
+    componentWillMount() {
+        const { initialize, fields, current } = this.props
+        initialize(initItems(fields, current))
+    }
+
+    render() {
+        const { fields, current, action } = this.props
+        const isNew = !current.id
+        return <form onSubmit={this.props.handleSubmit(data => {
+                    doSubmit(data, this.props, action)
+                })}>
+            <FormGrid>
+                {fields.map(field => itemType(field) )}
+                <Buttons editing={this.props.editing} isNew={isNew} {...action} />
+            </FormGrid>
+        </form>
+    }
+}
+
+export const initItems = (fields, values) => {
+    const obj = {}
+    let test = fields.map(({name, type, init, group, items}) => {
+        switch(type) {
+        case 'group':
+            return items.map(item =>  {
+                return obj[item.name] = contains(values, group, item) || false
+            })
+        default:
+            return obj[name] = (values && values[name]) || init || '' 
+        }
+    })
+    return obj
+}
+
+const contains = (values, group, item) => 
+    values && values[group] && values[group].indexOf(item) > -1
+
+export const finalizeItems = (fields, values) => {
+    const obj = {}
+    for (let {name, type, group, items} in fields) {
+        switch(type) {
+        case 'group':
+            const list = []
+            for (let item in items) {
+                if ( values[item] ) {
+                    list.push(item)
+                }
+            }
+            obj[group] = list
+            break
+        default:
+            obj[name] = values[name]
+            break
+        }
+    }
+    return obj
 }
 
 export const validateRequired = (fields, input) => 
