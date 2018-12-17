@@ -1,42 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Field } from 'redux-form'
+import { fieldItem } from './Field'
 
-class Select extends React.Component {
-    clearClick = (event) => event.preventDefault()
+const Select = (field, editing) =>
+    <Field key={field.name} {...field} component={editing ? select : display} />
 
-    isActive = (value) => value ? 'ans-active' : ''
+const select = fieldItem(({input, items}) =>
+    <select {...input} >
+        {input.value ? '' : <option value=''>{input.label}</option>}
+        {items.map((item) =>
+            <option key={item.name} value={item.name}>{item.label}</option>
+        )}
+    </select>
+)
 
-    isChecked = (name, value) => this.isActive(name === value)
+const display = fieldItem(({input, items}) => 
+    input.value ? items.find(item => item.name === input.value).label : ''
+)
 
-    required = (value) => value ? <span style={({color:'red'})}>* </span> : ''
+export default Select
 
-    render() {
-        const { text, name, value, items, onClick, required } = this.props;
-        return (
-            <div>
-                <label htmlFor={name}>{this.required(required)}{text}: </label>
-                <span>
-                {items.map(({id, view}) => (
-                    <span key={id} id={id} 
-                            className={this.isChecked(value, id)} 
-                            onMouseDown={this.clearClick}
-                            onClick={() => onClick(name, id)}>
-                            &nbsp;{view}&nbsp;
-                    </span>
-                ))}
-                </span>
-            </div>
-        )
-    };  
-}
-
-Select.propTypes = {
-    text: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string,
-    required: PropTypes.bool,
-    items: PropTypes.array.isRequired,
-    onClick: PropTypes.func.isRequired,
-}
-
-export default Select;

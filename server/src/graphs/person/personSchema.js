@@ -1,20 +1,22 @@
 const { gql } = require('apollo-server')
 
 const fields = `
-id: ID!
-scaName: String!
-modernName: String!
-cellPhone: Int!
-email: String!
-password: String!
-region: Region!
-titles: [ Titles ]
-lastUpdated: Date!
+    id: ID!
+    scaName: String!
+    modernName: String!
+    cellPhone: Int!
+    eMail: String!
+    password: String!
+    notes: String
+    region: Region!
+    titles: [ Titles ]
+    lastUpdated: Date!
 `
 
 const PersonSchema = gql`
     input PersonInput {
         ${fields}
+        normalizedName: String
     }
 
     type Person {

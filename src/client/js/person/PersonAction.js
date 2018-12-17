@@ -2,10 +2,19 @@ import store from '../store/index'
 import { action as menu } from '../login/LoginAction'
 
 const CREATE_PERSON = 'createPerson'
-export const ADD_PERSON = 'addPerson'
+export const SET_PERSON = 'setPerson'
+const EDIT_PERSON = 'editPerson'
 
 const init = {
-    current: { modernName: 'Gary', region: 'nOaken' },
+    current: { 
+        scaName: 'Vorlin', 
+        modernName: 'Gary', 
+        cellPhone: 12345,
+        eMail: 'a@a.a',
+        password: 'none',
+        region: 'nOaken', 
+        titles:[ 'pelican', 'captain' ],
+    },
     editing: true,
 }
 
@@ -15,10 +24,9 @@ export const check = {
     hasPerson: (person) => person.id
 }
 
-const _addPerson = (person) => {
-    console.log('addPerson', person)
+const _setPerson = (person) => {
     store.dispatch({
-        type: ADD_PERSON,
+        type: SET_PERSON,
         payload: person,
     })
 }
@@ -31,9 +39,16 @@ const _createPerson = () => {
     menu.setPersonForm()
 }
 
+const _setEditing = () => {
+    store.dispatch({
+        type: EDIT_PERSON,
+    })
+}
+
 export const action = {
     createPerson: () => _createPerson(),
-    add: (person) => _addPerson(person),
+    set: (person) => _setPerson(person),
+    edit: () => _setEditing(),
 }
 
 export const personReducer = (state = init, action) => {
@@ -41,11 +56,17 @@ export const personReducer = (state = init, action) => {
     case CREATE_PERSON:
         return action.payload
        
-    case ADD_PERSON:
+    case SET_PERSON:
         return {
             current: action.payload,
             editing: false,
         }
+
+    case EDIT_PERSON:
+        return Object.assign({}, state, {
+            editing: true
+        })
+
     default:
         return state
     }

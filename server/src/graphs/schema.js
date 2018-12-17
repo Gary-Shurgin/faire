@@ -5,6 +5,7 @@ const PersonResolver = require('./person/personResolver')
 const schema = new ApolloServer({
     typeDefs: PersonSchema,
     resolvers: PersonResolver,
+    cors: true, //'http://localhost:3000',
 })
 
 schema.listen(4000).then(({url}) => {

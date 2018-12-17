@@ -1,44 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import styled from 'styled-components'
+import Label from './Label'
 
-class Field extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        this.handleChange = this.handleChange.bind(this)
-        this.required = this.required.bind(this)
-    }
+export const error = ({meta}) => 
+    meta && meta.touched && !meta.valid && 
+        <p style={{color:'red'}}>{meta.error}</p>
 
-    handleChange({target}) {
-        this.props.onChange(target.id, target.value)
-    }
+export const GridElement = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-column-gap: 5px;
+`
 
-    required(value) {
-        return value ? <span style={({color:'red'})}>* </span> : ''
-    }
+export const fieldItem = render => field =>
+    <GridElement key={field.name}>
+        {Label(field)}
+        {render(field)}
+        {error(field)}
+    </GridElement>
 
-    render() {
-        const { text, name, value, required, autoFocus } = this.props;
-        return (
-            <div>
-                <label htmlFor={name}>{this.required(required)}{text}: </label>
-                <input type='text'                              className='form-control'
-                        id={name} value={value}
-                        onChange={this.handleChange}
-                        autoFocus={autoFocus}
-                        autoComplete='off'
-                        isrequired={required ? 'true' : 'false'} />  
-            </div>
-        )
-    };  
-}
-
-Field.propTypes = {
-    text: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string,
-    required: PropTypes.bool,
-    onChange: PropTypes.func.isRequired,
-}
-
-export default Field;

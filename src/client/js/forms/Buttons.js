@@ -17,13 +17,13 @@ const Button = styled.span`
 `
 
 const Edit = () => <button>Edit</button>
-const Add = () => <button>Add</button>
+const Add = ({allow}) => <button>Add [{allow}]</button>
 const Update = () => <button>Update</button>
 const Cancel = () => <Button primary type='submit'>Cancel</Button>
 
-const editButtons = (isNew) =>
+const editButtons = (isNew, allow) =>
     <div>
-        {isNew ? <Add /> : <Update />}
+        {isNew ? <Add allow={allow}/> : <Update allow={allow}/>}
         <Cancel />
     </div>
 
@@ -34,10 +34,10 @@ const GridElement = styled.div`
     margin-top: 1em;    
 `
 
-const Buttons = ({editing, isNew}) => 
+const Buttons = ({props, isNew}) => 
     <GridElement>
         <p></p>
-        {editing ? editButtons(isNew) : <Edit />}
+        {props.editing ? editButtons(isNew, props.dirty && props.valid) : <Edit />}
     </GridElement>
 
 export default Buttons

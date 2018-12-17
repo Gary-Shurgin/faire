@@ -4,7 +4,9 @@ import { noteReducer } from '../home/NotesAction'
 import { personReducer } from '../person/PersonAction'
 import { loginReducer } from '../login/LoginAction'
 import { reducer as formReducer } from 'redux-form'
-import { addFlow } from '../flow/Add'
+import { Request } from '../flow/Request'
+import { Logger } from '../flow/Logger'
+import { personRequest } from '../person/PersonRequest'
 
 const app = combineReducers({
     menu: menuReducer,
@@ -16,7 +18,7 @@ const app = combineReducers({
 
 const store = createStore(
     app,
-    applyMiddleware(addFlow)
+    applyMiddleware(Logger, Request, ...personRequest)
     // ,
     // window.__REDUX_DEVTOOLS_EXTENSION__ &&
     //     window.__REDUX_DEVTOOLS_EXTENSION__()

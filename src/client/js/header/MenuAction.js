@@ -1,5 +1,5 @@
 import store from '../store/index'
-import { ADD_PERSON } from '../person/PersonAction'
+import { SET_PERSON } from '../person/PersonAction'
 const HOME_MENU = 'homeItem'
 const RULES_MENU = 'rulesItem'
 const CRITERIA_MENU = 'criteriaItem'
@@ -46,7 +46,7 @@ export const menuReducer = (state = init, {type, payload}) => {
     switch(type) {
     case SET_MENU:
         return { ...state, ...payload }
-    case ADD_PERSON:
+    case SET_PERSON:
         return { ...state, person: payload }
     default:
         return state
