@@ -14,7 +14,7 @@ const LabelCss = styled.label`
     `}
 `
 const Label = (field) => 
-    <LabelCss htmlFor={field.name} {...field}>
+    <LabelCss forHtml={field.name} {...field}>
         {field.label}:
     </LabelCss>
 

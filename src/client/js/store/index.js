@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { menuReducer } from '../header/MenuAction'
 import { noteReducer } from '../home/NotesAction'
 import { personReducer } from '../person/PersonAction'
@@ -18,10 +18,11 @@ const app = combineReducers({
 
 const store = createStore(
     app,
-    applyMiddleware(Logger, Request, ...personRequest)
-    // ,
-    // window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    //     window.__REDUX_DEVTOOLS_EXTENSION__()
+    compose(
+        applyMiddleware(Logger, Request, personRequest),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && 
+            window.__REDUX_DEVTOOLS_EXTENSION__(),
+    )
 )
 
 export default store

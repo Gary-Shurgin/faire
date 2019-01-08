@@ -1,51 +1,35 @@
 import React from 'react'
 import styled from 'styled-components'
-import Buttons from './Buttons'
-import store from '../store/index'
 import { controls } from './Controls'
+import { Buttons } from './Buttons'
 
 const FormGrid = styled.div`
     display: grid;
     grid-row-gap: 3px;
 `
 
-const doSubmit = (data, {current, form}) => {
-    const usage = current.id ? 'Update' : 'Add'
-    console.log('submit', form)
-    store.dispatch({
-        type: usage,
-        payload: data,
-        form: form,
-    })
-}
-
 const itemType = (field, {editing}) => 
     field.control ? field.control(field, editing) : controls.input(field, editing)
-
 
 export class Form extends React.Component {
     componentDidMount() {
         const { initialize, current } = this.props
-        console.log('form mount', current)
         initialize(current)
     }
 
     componentDidUpdate(prevProps) {
         const { initialize, current } = this.props
         if ( prevProps.current !== current ) {
-            console.log('form update', current)
             initialize(current)
         }   
     }
 
     render() {
-        const { fields, current, handleSubmit } = this.props
-        return <form onSubmit={handleSubmit(data => 
-                    doSubmit(data, this.props)
-                )}>
+        const { fields } = this.props
+        return <form>
             <FormGrid>
                 {fields.map(field => itemType(field, this.props))}
-                <Buttons props={this.props} isNew={!current.id} />
+                <Buttons {...this.props}  />
             </FormGrid>
         </form>
     }

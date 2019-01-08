@@ -20,19 +20,19 @@ const PersonResolver = {
     Mutation: {
         addPerson: (_, { person }) => {
             if ( find(people, { normalizedName: person.normalizedName }) ) {
-                throw new Error(`'${person.scaName}' already exists.`)
+                throw new Error(JSON.stringify({error: 'Duplicate', value: person.scaName}))
             }
             people = [ ...people, person ]
             return person
         },
         updatePerson: (_, { person }) => {
             const index = people.findIndex(item => item.id === person.id)
-            if ( index.size < 0 ) {
-                throw new Error(`'${person.scaName}' does not exist.`)
+            if ( index < 0 ) {
+                throw new Error(JSON.stringify({error: 'Missing', value: person.scaName}))
             }
             if ( people[index].normalizedName != person.normalizedName ) {
-                if ( find(people, {normalizedName: people.normalizedName}) ) {
-                    throw new Error(`'${person.scaName}' already exists.`)
+                if ( find(people, {normalizedName: person.normalizedName}) ) {
+                    throw new Error(JSON.stringify({error: 'Duplicate', value: person.scaName}))
                 }
             }
             people = [ ...people.slice(0, index), person, ...people.slice(index+1) ]

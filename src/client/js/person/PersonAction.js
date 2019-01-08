@@ -1,21 +1,19 @@
 import store from '../store/index'
-import { action as menu } from '../login/LoginAction'
 
 const CREATE_PERSON = 'createPerson'
 export const SET_PERSON = 'setPerson'
 const EDIT_PERSON = 'editPerson'
+const ERROR_PERSON = 'errorPerson'
 
 const init = {
-    current: { 
-        scaName: 'Vorlin', 
-        modernName: 'Gary', 
-        cellPhone: 12345,
-        eMail: 'a@a.a',
-        password: 'none',
-        region: 'nOaken', 
-        titles:[ 'pelican', 'captain' ],
-    },
-    editing: true,
+//    scaName: 'Vorlin', 
+    modernName: 'Gary', 
+    cellPhone: 12345,
+    eMail: 'a@a.a',
+    password: 'none',
+    region: 'nOaken', 
+    titles:[ 'pelican', 'captain' ],
+    // titles: [],
 }
 
 export const mapStateToProps = ({person}) => person
@@ -36,36 +34,44 @@ const _createPerson = () => {
         type: CREATE_PERSON,
         payload: init,
     })
-    menu.setPersonForm()
 }
 
-const _setEditing = () => {
+const _setEditing = (editing) => {
     store.dispatch({
         type: EDIT_PERSON,
+        payload: editing,
+    })
+}
+
+const _setError = (message) => {
+    store.dispatch({
+        type: ERROR_PERSON,
+        payload: message,
     })
 }
 
 export const action = {
     createPerson: () => _createPerson(),
+    clearPerson: () => _setPerson(null),
     set: (person) => _setPerson(person),
-    edit: () => _setEditing(),
+    edit: () => _setEditing(true),
+    clear: () => _setEditing(false),
+    setError: (message) => _setError(message)
 }
 
-export const personReducer = (state = init, action) => {
-    switch(action.type) {
+export const personReducer = (state = {}, {type, payload}) => {
+    switch(type) {
     case CREATE_PERSON:
-        return action.payload
-       
+        return { current: init, editing: true, error: '' }
+
     case SET_PERSON:
-        return {
-            current: action.payload,
-            editing: false,
-        }
+        return { current: payload, editing: false, error: '' }
 
     case EDIT_PERSON:
-        return Object.assign({}, state, {
-            editing: true
-        })
+        return { ...state, editing: payload, error: '' }
+
+    case ERROR_PERSON:
+        return { ...state, error: payload }
 
     default:
         return state

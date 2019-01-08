@@ -24,7 +24,7 @@ export const check = {
     isLogin: (state) => _isMenu(state, LOGIN_MENU),
 }
 
-const SET_MENU = 'setMenu'
+export const SET_MENU = 'setMenu'
 
 const _setMenu = (state, item) => {
     if ( !_isMenu(state, item) ) {
@@ -47,7 +47,7 @@ export const menuReducer = (state = init, {type, payload}) => {
     case SET_MENU:
         return { ...state, ...payload }
     case SET_PERSON:
-        return { ...state, person: payload }
+        return { ...state, person: payload } 
     default:
         return state
     }

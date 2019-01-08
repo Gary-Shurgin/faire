@@ -1,4 +1,5 @@
 import store from '../store/index'
+import { action as person } from '../person/PersonAction'
 
 const SELECT_PAGE = 'select'
 const CREATE_USER = 'createUser'
@@ -18,7 +19,7 @@ export const check = {
     isCurrent: state => _isPage(state, SHOW_USER),
 }
 
-const SET_PAGE = 'setPage'
+export const SET_PAGE = 'setPage'
 
 const _setPage = (state, item) => {
     if ( !_isPage(state, item) ) {
@@ -26,6 +27,9 @@ const _setPage = (state, item) => {
             type: SET_PAGE,
             payload: item,
         })
+        if ( item === CREATE_USER ) {
+            person.createPerson()
+        }
     }
 }
 

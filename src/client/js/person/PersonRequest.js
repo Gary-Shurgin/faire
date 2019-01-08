@@ -1,37 +1,84 @@
 import { action as reducer } from './PersonAction'
+import { action as menus } from '../login/LoginAction'
 import latinize from 'latinize'
-
 // const { gql } = require('apollo-server')
 const v4 = require('uuid/v4')
 
-const displayFields = `id scaName modernName cellPhone eMail password region titles lastUpdated normalizedName lastUpdated`
+const displayFields = `id scaName modernName cellPhone eMail password region titles normalizedName lastUpdated`
 const addQuery = `mutation AddPerson($person:PersonInput!) { addPerson(person:$person)  { ${displayFields} } }`
+const updateQuery = `mutation UpdatePerson($person:PersonInput!) { updatePerson(person:$person)  { ${displayFields} } }`
 
 const updateName = text => latinize(text).toLowerCase()
 
-const addComplete = store => next => action => {
-    if ( action.type === 'addPerson' ) {
-        reducer.set(action.payload)
+export const personRequest = store => next => action => {
+    const { type, form, payload } = action
+    if ( form === 'personForm' ) {
+        switch( type ) {
+            case 'addPerson':
+            case 'updatePerson':
+                reducer.set(payload)
+                reducer.clear()
+                break
+            
+            case 'Error':
+                reducer.setError(buildMessage(payload))
+                break
+
+            case 'Add':
+                store.dispatch(buildRequest(addQuery, payload, { id: v4() }))
+                break
+
+            case 'Update':
+                store.dispatch(buildRequest(updateQuery, payload))
+                break
+
+            case 'Edit':
+                reducer.edit()
+                break
+
+            case 'Cancel':
+                reducer.clearPerson()
+                menus.setSelect()
+                break
+
+            case 'CancelEdit':
+                reducer.clear()
+                break
+
+            default: 
+        }
     }
     next(action)
 }
 
-const addSetup = store => next => action => {
-    if ( action.type === 'Add' && action.form === 'personForm') {
-        const person = Object.assign({}, action.payload, {
-                id: v4(),
-                lastUpdated: new Date(),
-                normalizedName: updateName(action.payload.scaName)
-        })
-        store.dispatch({
-            type: 'Request',
-            payload: {
-                query: addQuery,
-                variables: { person }
-            }
-        })
+const buildRequest = (query, payload, addition = {}) => ({
+    type: 'Request',
+    form: 'personForm',
+    payload: {
+        query: query,
+        variables: { person: {
+            ...payload,
+            lastUpdated: new Date(),
+            normalizedName: updateName(payload.scaName),
+            ...addition,
+        }}
     }
-    next(action)
-}
+})
 
-export const personRequest = [ addSetup, addComplete ]
+const buildMessage = (payload) => {
+    const { error, value } = payload
+    switch(error) {
+        case 'Duplicate':
+            return `'${value}' already exists`
+
+        case 'Missing':
+            return `Cannot find '${value}'`
+
+        case 'Request':
+        case 'Response':
+            return value
+
+        default:
+            return JSON.stringify(payload)
+    }
+}
