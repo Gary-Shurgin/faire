@@ -1,16 +1,24 @@
 import { action as reducer } from './PersonAction'
 import { action as menus } from '../login/LoginAction'
 import latinize from 'latinize'
+import { fields } from './PersonLayout'
 // const { gql } = require('apollo-server')
 const v4 = require('uuid/v4')
 
-const displayFields = `id scaName modernName cellPhone eMail password region titles normalizedName lastUpdated`
+const gather = () => {
+    return fields.map(field => {
+        return field.group ? field.group : field.name
+    }).join(' ')
+}
+
+const displayFields = `id scaName modernName cellPhone eMail password region titles normalizedName notes lastUpdated`
 const addQuery = `mutation AddPerson($person:PersonInput!) { addPerson(person:$person)  { ${displayFields} } }`
 const updateQuery = `mutation UpdatePerson($person:PersonInput!) { updatePerson(person:$person)  { ${displayFields} } }`
 
 const updateName = text => latinize(text).toLowerCase()
 
 export const personRequest = store => next => action => {
+    console.log('fields', gather())
     const { type, form, payload } = action
     if ( form === 'personForm' ) {
         switch( type ) {
